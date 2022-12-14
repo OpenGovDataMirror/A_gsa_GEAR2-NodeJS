@@ -1,0 +1,55 @@
+<!-- The article view -->
+<section class="row" data-ng-controller="BusinessController"
+  data-ng-init="createOrgChart()">
+  <script>
+    $(function() {
+      $('[data-toggle="popover"]').popover()
+    })
+  </script>
+
+  <div class="col-md-12">
+    <div id="business" class="panel panel-default" style="height: auto;">
+      <div id="businessheader" class="panel-heading">
+        <h3><i class="fa fa-sitemap fa-fw"></i>GSA Organization Chart</h3>
+        <button style="position:absolute;right:30px; top:15px;" type="button"
+          class="btn btn-lg btn-info" data-toggle="popover" data-container="body" data-trigger="'outsideClick'"
+          data-placement="bottom" data-html="true" title="Model Help"
+          data-content="
+				<b>Hover:</b> Hover over a circle next to an organization to see its description. In the pop-up window, click the <span class='far fa-file-alt'></span>  icon to see additional information about the organization or click the <span class='fa fa-times'></span> icon to close the window.<br>
+				<b>Click:</b> Left click on the circle next to an organization to see the next level of the organization. (Not all organizations have another level).
+        <br>
+        <b>Search:</b> The search box below can search for any of the organization display names and expand the chart to the nodes that match. Enter your desired term into the search bar and press <i>Enter</i> or click the magnifying glass. You will get an alert if no matching term is found.">
+        Help with this Chart</button>
+      </div>
+      <div class="input-group pull-left col-lg-3" style="padding-top: 7px; padding-left: 7px;">
+        <input type="text" class="form-control" placeholder="Search Org Display Names"
+          id="searchField" ng-model="searchKey" ng-keydown="$event.keyCode === 13 && search()"/>
+        <div class="input-group-btn">
+          <button class="btn btn-primary" ng-click="search()">
+            <span class="fa fa-search"></span>
+          </button>
+        </div>
+      </div>
+      <div id="orgchart" class="panel-body">
+      </div>
+    </div>
+    <div class="panel panel-info" id="orgdetail"
+      style="display:none; width:30%; height: auto; position: absolute; top: 85px; right: 25px;">
+      <div id="orgdetailheader" class="panel-heading">
+        <div id='orgname' style="margin-right:25px;">
+        </div>
+        <div style='margin-left:30px;'>
+          <span id='orgdet' class='far fa-file-alt'
+            style="position:absolute;right:30px; top:10px;"
+            data-toggle="tooltip"
+            title="Click to view organization details"></span>
+          <span id='orgclose' class='fa fa-times'
+            style='position:absolute;right:10px; top:10px;'
+            data-toggle="tooltip" title="Close this box"></span>
+        </div>
+      </div>
+      <div id="orgdetailbody" class="panel-body" style="margin: 10px;">
+      </div>
+    </div>
+  </div>
+</section>
